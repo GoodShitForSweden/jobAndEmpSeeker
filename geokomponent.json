@@ -1,0 +1,404 @@
+{"apiVersion":"1",
+  "swaggerVersion":"1.2",
+  "basePath":"/geo/rest",
+  "resourcePath":"/v1",
+  "produces":["application/json;charset=UTF-8"],
+  "apis":[{"path":"/v1/postnummer",
+    "operations":[
+      {"method":"GET",
+        "summary":"Hämta postnummer vilkas inledande siffror matchar de givna",
+        "notes":"",
+        "type":"Postnummer",
+        "nickname":"hamtaPostnummer",
+        "produces":["application/json","application/xml;charset=UTF-8"],
+        "parameters":[
+          {"name":"postnummerPrefix",
+            "description":"De 3-5 första siffrorna i sökt postnummer",
+            "required":true,"type":"string",
+            "paramType":"query",
+            "allowMultiple":false}],
+        "responseMessages":[{"code":200,
+          "message":"En lista av postnummer. Tom lista om ingen träff."},
+          {"code":400,
+            "message":"Ogiltigt postnummer-prefix har angivits"}
+        ]
+      }
+    ]
+  },
+    {"path":"/v1/uniktid",
+      "operations":[
+        {"method":"GET",
+          "summary":"Hämta det postnummer som matchar det uniktaid värdet",
+          "notes":"",
+          "type":"Postnummer",
+          "nickname":"hamtaPostnummerMedUID",
+          "produces":["application/json","application/xml;charset=UTF-8"],
+          "parameters":[
+            {"name":"uniktid",
+              "description":"Det unika värdet för kommunkod + postnummer",
+              "required":true,
+              "type":"string",
+              "paramType":"query",
+              "allowMultiple":false}
+          ],
+          "responseMessages":[
+            {"code":200,
+              "message":"Ett postnummer"},
+            {"code":400,
+              "message":"Ogiltigt ID"},
+            {"code":404,
+              "message":"Postnummret saknas"}
+          ]
+        }
+      ]
+    },
+    {"path":"/v1/adressuniktid",
+      "operations":[
+        {"method":"GET",
+          "summary":"Hämta adress som matchar det unika idt",
+          "notes":"",
+          "type":"Adress",
+          "nickname":"hamtaAdressMedUID",
+          "produces":["application/json","application/xml;charset=UTF-8"],
+          "parameters":[
+            {"name":"adressuniktid",
+              "description":"Det unika värdet för en adress",
+              "required":true,
+              "type":"string",
+              "paramType":"query",
+              "allowMultiple":false
+            }
+          ],
+          "responseMessages":[
+            {"code":200,
+              "message":"Anropet gick bra, en adress har returnerats"},
+            {"code":400,
+              "message":"Ogiltigt ID"},
+            {"code":404,
+              "message":"Adressen finns inte"},
+            {"code":410,
+              "message":"Adressen finns inte längre. Den sist kända returneras"}
+          ]
+        }
+      ]
+    },
+    {"path":"/v1/gata",
+      "operations":[
+        {"method":"GET",
+          "summary":"Hämta gator",
+          "notes":"",
+          "type":"Gata",
+          "nickname":"hamtaGator",
+          "produces":["application/json","application/xml;charset=UTF-8"],
+          "parameters":[
+            {"name":"gatunamn",
+              "description":"Fullständigt eller början av ett gatunamn.",
+              "required":false,
+              "type":"string",
+              "paramType":"query",
+              "allowMultiple":false}
+          ]
+        }
+      ]
+    },
+    {"path":"/v1/lan",
+      "operations":[
+        {"method":"GET",
+          "summary":"Hämta län för given länskod eller hämta alla län.",
+          "notes":"",
+          "type":"Lan",
+          "nickname":"hamtaLan",
+          "produces":["application/json","application/xml;charset=UTF-8"],
+          "parameters":[
+            {"name":"lankod",
+              "description":"Tvåställig länskod (siffror) eller utelämna parameter för att hämta alla län.",
+              "required":false,
+              "type":"string",
+              "paramType":"query",
+              "allowMultiple":false},
+            {"name":"lan_version",
+              "description":"Versionsnummer eller utelämna parameter för senaste.",
+              "required":false,
+              "type":"integer",
+              "format":"int64",
+              "paramType":"query",
+              "allowMultiple":false},
+            {"name":"hamta_granser",
+              "description":"Inkludera koordinater för gränser i svar",
+              "required":false,
+              "type":"boolean",
+              "paramType":"query",
+              "allowMultiple":false}
+          ]
+        }
+      ]
+    },
+    {"path":"/v1/kommun",
+      "operations":[
+        {"method":"GET",
+          "summary":"Hämta kommun för given kommunkod eller hämta alla kommuner.",
+          "notes":"",
+          "type":"Kommun",
+          "nickname":"hamtaKommuner",
+          "produces":["application/json","application/xml;charset=UTF-8"],
+          "parameters":[
+            {"name":"kommunkod",
+              "description":"Fyra- eller femställig kommunkod (siffror) eller utelämna parameter för att hämta alla kommuner.",
+              "required":false,
+              "type":"string",
+              "paramType":"query",
+              "allowMultiple":false},
+            {"name":"kommun_version",
+              "description":"Versionsnummer eller utelämna parameter för senaste.",
+              "required":false,
+              "type":"integer",
+              "format":"int64",
+              "paramType":"query",
+              "allowMultiple":false},
+            {"name":"hamta_granser",
+              "description":"Inkludera koordinater för gränser i svar",
+              "required":false,
+              "type":"boolean",
+              "paramType":"query","allowMultiple":false}
+          ]
+        }
+      ]
+    },
+    {"path":"/v1/fritext",
+      "operations":[
+        {"method":"GET",
+          "summary":"Sök orter, kommuner och län med fritext",
+          "notes":"",
+          "type":"fritextmatch",
+          "nickname":"sokFritext",
+          "produces":["application/json","application/xml;charset=UTF-8"],
+          "parameters":[
+            {"name":"text",
+              "description":"Början av ett ortsnamn, kommunnamn, länsnamn eller gata",
+              "required":true,
+              "type":"string",
+              "paramType":"query",
+              "allowMultiple":false},
+            {"name":"hints",
+              "description":"Kommaseparerad lista med typer av resultat som ska ignoreras (län, ort, kommun, postnummer, gata)",
+              "required":false,
+              "type":"string",
+              "paramType":"query",
+              "allowMultiple":false}
+          ]
+        }
+      ]
+    },
+    {"path":"/v1/postnummerstruktur",
+      "operations":[
+        {"method":"GET",
+          "summary":"Hämta postnummerstruktur för Sverige",
+          "notes":"",
+          "type":"LanExtend",
+          "nickname":"hamtaPostnummerStruktur",
+          "produces":["application/json","application/xml;charset=UTF-8"],
+          "parameters":[
+            {"name":"lanskod",
+              "description":"Tvåställig länskod eller utelämna värde för alla län.",
+              "required":false,
+              "type":"string",
+              "paramType":"query",
+              "allowMultiple":false}
+          ]
+        }
+      ]
+    },
+    {"path":"/v1/adress",
+      "operations":[
+        {"method":"GET",
+          "summary":"Hämta adresser",
+          "notes":"",
+          "type":"Adress",
+          "nickname":"hamtaAdresser",
+          "produces":["application/json","application/xml"],
+          "parameters":[
+            {"name":"gatuadress",
+              "description":"Gatunamn med eller utan nummer och littera. Denna parameter kan inte användas tillsammans med parametrarna gatunamn, gatunummer eller littera.",
+              "required":false,
+              "type":"string",
+              "paramType":"query",
+              "allowMultiple":false},
+            {"name":"gatunamn",
+              "description":"Fullständigt och exakt gatunamn, eller tomt.  Denna parameter kan inte användas tillsammans med parametern gatuadress.",
+              "required":false,
+              "type":"string",
+              "paramType":"query",
+              "allowMultiple":false},
+            {"name":"gatunummer",
+              "description":"Gatunummer utan littera, eller tomt.",
+              "required":false,
+              "type":"string",
+              "paramType":"query",
+              "allowMultiple":false},
+            {"name":"littera",
+              "description":"littera till gatunummer, eller tomt",
+              "required":false,
+              "type":"string",
+              "paramType":"query",
+              "allowMultiple":false},
+            {"name":"postnummer",
+              "description":"Fullständigt postnummer, eller tomt.",
+              "required":false,
+              "type":"string",
+              "paramType":"query",
+              "allowMultiple":false},
+            {"name":"postort",
+              "description":"Fullständigt och exakt ortsnamn, eller tomt.",
+              "required":false,
+              "type":"string",
+              "paramType":"query",
+              "allowMultiple":false},
+            {"name":"kommunkod",
+              "description":"Fullständigt och exakt kommunkod. Denna parameter kan inte användas tillsammans med parametern kommunnamn",
+              "required":false,
+              "type":"string",
+              "paramType":"query",
+              "allowMultiple":false},
+            {"name":"kommunnamn",
+              "description":"Fullständigt och exakt kommunnamn. Denna parameter kan inte användas tillsammans med parametern kommunid",
+              "required":false,
+              "type":"string",
+              "paramType":"query",
+              "allowMultiple":false}],
+          "responseMessages":[
+            {"code":200,
+              "message":"Resultat funnet"},
+            {"code":404,
+              "message":"Inga adresser matchar sökparametrarna"},
+            {"code":400,
+              "message":"Felaktiga parametrar eller felaktig kombination av parametrar har angivits."}
+          ]
+        }
+      ]
+    }
+  ],
+  "models":{
+    "Land":{
+      "id":"Land",
+      "properties":{
+        "landISOkod":{
+          "type":"string"},
+        "landnamn":{"type":"string"}}},
+    "fritextmatch": {
+      "id":"fritextmatch",
+      "properties":{
+        "typ": {
+          "type":"string",
+          "enum":["KOMMUN","LAN","POSTORT","GATA","GATUADRESS","POSTNUMMER"]
+        },
+        "gatunamn":{"type":"string"},
+        "postnummer":{"type":"string"},
+        "postort":{"type":"string"},
+        "kommunkod":{"type":"string"},
+        "kommunnamn":{"type":"string"},
+        "land":{"type":"string"},
+        "koordinater":{"$ref":"Koordinat"},
+        "lankod":{"type":"string"},
+        "lannamn":{"type":"string"}}},
+    "Polygon":{
+      "id":"Polygon",
+      "properties":{
+        "koordinater":{
+          "type":"array",
+          "items":{
+            "$ref":"Koordinat"}
+        }
+      }
+    },
+    "Gata": {
+      "id":"Gata",
+      "properties":{
+        "gatunamn":{"type":"string"},
+        "postnummer":{"type":"string"},
+        "postort":{"type":"string"}}},
+    "KommunExtend":{
+      "id":"KommunExtend",
+      "properties":{
+        "postnummer":{
+          "type":"array",
+          "items":{
+            "$ref":"Postnummer"}
+        },
+        "lankod":{"type":"string"},
+        "koordinater":{"$ref":"Koordinat"},
+        "kommunkod":{"type":"string"},
+        "kommunnamn":{"type":"string"}
+      }
+    },
+    "Adress":{
+      "id":"Adress",
+      "properties":{
+        "gatunamn":{"type":"string"},
+        "gatunummer":{"type":"string"},
+        "littera":{"type":"string"},
+        "postnummer":{"type":"string"},
+        "ort":{"type":"string"},
+        "kommunkod":{"type":"string"},
+        "lankod":{"type":"string"},
+        "land":{"$ref":"Land"},
+        "id":{"type":"string"},
+        "borttagen":{"type":"string"},
+        "koordinat":{"$ref":"Koordinat"},
+        "gatuadress":{"type":"string"}
+      }
+    },
+    "Grans":{
+      "id":"Grans",
+      "properties":{
+        "polygoner":{"type":"array","items":{"$ref":"Polygon"}}
+      }
+    },
+    "Koordinat":{
+      "id":"Koordinat",
+      "properties":{
+        "x":{"type":"string"},
+        "y":{"type":"string"}
+      }
+    },
+    "Postnummer":{
+      "id":"Postnummer",
+      "properties":{
+        "postnummer":{"type":"string"},
+        "ortnamn":{"type":"string"},
+        "lankod":{"type":"string"},
+        "kommunkod":{"type":"string"},
+        "koordinater":{"$ref":"Koordinat"},
+        "uniktid":{"type":"string"}
+      }
+    },
+    "Lan":{
+      "id":"Lan",
+      "properties":{
+        "koordinater":{"$ref":"Koordinat"},
+        "grans":{"$ref":"Grans"},
+        "lankod":{"type":"string"},
+        "lansnamn":{"type":"string"}
+      }
+    },
+    "Kommun":{
+      "id":"Kommun",
+      "properties":{
+        "koordinater":{"$ref":"Koordinat"},
+        "grans":{"$ref":"Grans"},
+        "lankod":{"type":"string"},
+        "kommunkod":{"type":"string"},
+        "kommunnamn":{"type":"string"}
+      }
+    },
+    "LanExtend":{
+      "id":"LanExtend",
+      "properties":{
+        "lankod":{"type":"string"},
+        "lansnamn":{"type":"string"},
+        "kommuner":{"type":"array",
+          "items":{"$ref":"KommunExtend"}
+        }
+      }
+    }
+  }
+}

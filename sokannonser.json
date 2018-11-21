@@ -1,0 +1,528 @@
+{
+  "swagger": "2.0",
+  "basePath": "/",
+  "paths": {
+    "/sok": {
+      "get": {
+        "tags": [
+          "sokannonser"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/annonssvar"
+            }
+          },
+          "401": {
+            "description": "Felaktig API-nyckel"
+          },
+          "500": {
+            "description": "Bad"
+          }
+        },
+        "operationId": "get_search",
+        "parameters": [
+          {
+            "name": "api-key",
+            "in": "header",
+            "type": "string",
+            "required": true,
+            "default": "apa",
+            "description": "Nyckel som kr\u00e4vs f\u00f6r att anv\u00e4nda API:et"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 2000,
+            "default": 0,
+            "description": "B\u00f6rja lista resultat fr\u00e5n denna position (0-2000)"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 1000,
+            "default": 10,
+            "description": "Antal resultat att visa (0-1000)"
+          },
+          {
+            "name": "sortera",
+            "in": "query",
+            "type": "string",
+            "enum": [
+              "relevance",
+              "pubdate-desc",
+              "pubdate-asc",
+              "applydate-desc",
+              "applydate-asc"
+            ],
+            "collectionFormat": "multi",
+            "description": "Sortering.\npubdate-desc: publiceringsdatum, nyast f\u00f6rst\npubdate-asc: publiceringsdatum, \u00e4ldst f\u00f6rst\napplydate-desc: sista ans\u00f6kningsdatum, nyast f\u00f6rst\napplydate-asc: sista ans\u00f6kningsdatum, \u00e4ldst f\u00f6rst\nrelevance: Relevans (po\u00e4ng)"
+          },
+          {
+            "name": "publicerad-innan",
+            "in": "query",
+            "type": "string",
+            "description": "Visa annonser publicerade innan angivet datum (p\u00e5 formen YYYY-mm-ddTHH:MM:SS)"
+          },
+          {
+            "name": "publicerad-efter",
+            "in": "query",
+            "type": "string",
+            "description": "Visa annonser publicerade efter angivet datum (p\u00e5 formen YYYY-mm-ddTHH:MM:SS)"
+          },
+          {
+            "name": "q",
+            "in": "query",
+            "type": "string",
+            "description": "Fritextfr\u00e5ga"
+          },
+          {
+            "name": "typehead",
+            "in": "query",
+            "type": "string",
+            "description": "Ge f\u00f6rslag p\u00e5 s\u00f6kord utifr\u00e5n nuvarande s\u00f6kning (type head)"
+          },
+          {
+            "name": "yrkesroll",
+            "in": "query",
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi",
+            "description": "En eller flera yrkesben\u00e4mningskoder enligt taxonomi"
+          },
+          {
+            "name": "yrkesgrupp",
+            "in": "query",
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi",
+            "description": "En eller flera yrkesgruppskoder enligt taxonomi"
+          },
+          {
+            "name": "yrkesomrade",
+            "in": "query",
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi",
+            "description": "En eller flera yrkesomr\u00e5deskoder enligt taxonomi"
+          },
+          {
+            "name": "kompetens",
+            "in": "query",
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi",
+            "description": "En eller flera kompetenskoder enligt taxonomi"
+          },
+          {
+            "name": "arbetstidsomfattning",
+            "in": "query",
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi",
+            "description": "En eller flera arbetstidsomfattningskoder enligt taxonomi"
+          },
+          {
+            "name": "korkort",
+            "in": "query",
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi",
+            "description": "Typ av k\u00f6rkort som efterfr\u00e5gas (taxonomikod)"
+          },
+          {
+            "name": "anstallningstyp",
+            "in": "query",
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi",
+            "description": "Anst\u00e4llningstyp enligt taxonomi"
+          },
+          {
+            "name": "utan-erfarenhet",
+            "in": "query",
+            "type": "boolean",
+            "default": false,
+            "description": "Visa enbart jobb som inte kr\u00e4ver erfarenhet"
+          },
+          {
+            "name": "kommun",
+            "in": "query",
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi",
+            "description": "En eller flera kommunkoder"
+          },
+          {
+            "name": "lan",
+            "in": "query",
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi",
+            "description": "En eller flera l\u00e4nskoder"
+          },
+          {
+            "name": "resultatmodell",
+            "in": "query",
+            "type": "string",
+            "enum": [
+              "pbapi",
+              "simple"
+            ],
+            "collectionFormat": "multi",
+            "description": "Resultatmodell"
+          },
+          {
+            "name": "dataset",
+            "in": "query",
+            "type": "string",
+            "default": "arbetsf\u00f6rmedlingen",
+            "enum": [
+              "arbetsf\u00f6rmedlingen",
+              "auranest"
+            ],
+            "collectionFormat": "multi",
+            "description": "S\u00f6k bland AF:s annonser eller alla p\u00e5 marknaden (auranest)"
+          }
+        ]
+      }
+    },
+    "/vardeforrad": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        },
+        "operationId": "get_valuestore",
+        "parameters": [
+          {
+            "name": "api-key",
+            "in": "header",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "type": "integer",
+            "default": 0,
+            "description": "B\u00f6rja lista resultat fr\u00e5n denna position"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "type": "integer",
+            "default": 10,
+            "description": "Antal resultat att visa"
+          },
+          {
+            "name": "q",
+            "in": "query",
+            "type": "string",
+            "description": "Fritextfr\u00e5ga mot taxonomin. (Kan t.ex. anv\u00e4ndas f\u00f6r autocomplete / type ahead)"
+          },
+          {
+            "name": "kod",
+            "in": "query",
+            "type": "string",
+            "description": "Begr\u00e4nsa s\u00f6kning till taxonomiv\u00e4rden som har angiven kod som f\u00f6r\u00e4lder (anv\u00e4ndbart tillsammans medtyp)"
+          },
+          {
+            "name": "typ",
+            "in": "query",
+            "type": "string",
+            "enum": [
+              "yrkesroll",
+              "yrkesgrupp",
+              "yrkesomrade",
+              "kompetens",
+              "sprak",
+              "kommun",
+              "lan",
+              "arbetstidsomfattning"
+            ],
+            "collectionFormat": "multi",
+            "description": "Visa enbart taxonomiv\u00e4rden av typ (giltiga v\u00e4rden: ['yrkesroll', 'yrkesgrupp', 'yrkesomrade', 'kompetens', 'kommun', 'lan', 'land', 'arbetstidsomfattning', 'plats', 'sprak', 'anstallningstyp', 'korkort'])"
+          },
+          {
+            "name": "visa-antal",
+            "in": "query",
+            "type": "boolean",
+            "default": false,
+            "description": "Visa antal annonser som matchar taxonomiv\u00e4rde (endast i kombination med val av typ)"
+          }
+        ],
+        "tags": [
+          "sokannonser"
+        ]
+      }
+    }
+  },
+    "info": {
+      "title": "S\u00f6k Annonser",
+      "version": "1.0",
+      "description": "Hitta platsannonser."
+    },
+    "produces": [
+      "application/json"
+    ],
+    "consumes": [
+      "application/json"
+    ],
+    "tags": [
+      {
+        "name": "sokannonser",
+        "description": "Verktyg f\u00f6r att hitta platsannoner"
+      }
+    ],
+    "responses": {
+      "ParseError": {
+        "description": "When a mask can't be parsed"
+      },
+      "MaskError": {
+        "description": "When any error occurs on mask"
+      }
+    },
+    "definitions": {
+      "Site": {
+        "type": "object",
+        "properties": {
+          "url": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          }
+        }
+      },
+      "Location":{
+        "type":"object",
+        "properties": {
+          "googleMaps":{
+            "type": "object",
+            "properties": {
+              "id": {
+                "type":"string"
+              },
+              "type": {
+                "type": "string"
+              }
+            }
+          },
+          "translations":{
+            "type":"object",
+            "properties": {
+              "en-US":{
+                "type": "string"
+              },
+              "sv-SE":{
+                "type":"string"
+              }
+            }
+          },
+          "geoKomp":{
+            "type": "object",
+            "$ref":"#/definitions/coordinates"
+          }
+        }
+      },
+      "coordinates":{
+        "type": "object",
+        "properties": {
+            "x":{"type":"string"},
+            "y":{"type":"string"}
+        }
+      },
+      "AnnonsSource": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type":"string"
+          },
+          "url":{
+            "type":"string"
+          },
+          "site": {
+            "$ref": "#/definitions/Site"
+          },
+          "removedAt": {
+            "type": "string"
+          },
+          "lastSeenAt": {
+            "type": "string"
+          },
+          "firstSeenAt": {
+            "type": "string"
+          }
+        }
+      },
+      "AnnonsContent": {
+        "type": "object",
+        "properties":{
+          "xml": {
+            "type": "string"
+          },
+          "text":{
+            "type": "string"
+          }
+        }
+      },
+      "Employer":{
+        "type": "object",
+        "properties": {
+          "name" :{
+            "type": "string"
+          },
+          "logoUrl": {
+            "type": "string"
+          }
+        }
+      },
+      "Annons": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "title": {
+            "type": "object",
+            "properties": {
+              "freetext": {
+                "type": "string"
+              }
+            }
+          },
+          "header": {
+            "type": "string"
+          },
+          "source": {
+            "type": "object",
+            "$ref": "#/definitions/AnnonsSource"
+          },
+          "content": {
+            "type": "object",
+            "$ref": "#/definitions/AnnonsContent"
+          },
+          "employer": {
+            "type": "object",
+            "$ref": "#/definitions/Employer"
+          },
+          "location": {
+            "$ref": "#/definitions/Location"
+          },
+          "updatedAt": {
+            "type": "string"
+          },
+          "application": {
+            "type": "object",
+            "properties": {
+              "url": {
+                "type": "string"
+              },
+              "site": {
+                "$ref": "#/definitions/Site"
+              },
+              "email": {
+                "type": "string"
+              },
+              "deadline": {
+                "type": "string"
+              },
+              "reference": {
+                "type": "string"
+              }
+            }
+          },
+          "timestamp": {
+            "type": "number"
+          },
+          "skills": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "occupations": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "Annonssvar": {
+        "type": "object",
+        "properties": {
+          "total": {
+            "type": "integer"
+          },
+          "positions": {
+            "type": "integer"
+          },
+          "hits": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/Annons"
+            }
+          }
+        }
+      },
+      "VardeFaradSvar": {
+        "type": "object",
+        "properties": {
+          "sokning": {
+            "type": "object",
+            "properties": {
+              "filter": {
+                "type": "string"
+              }
+            }
+          },
+          "resultat": {
+            "type": "array",
+            "items":{
+              "type":"object",
+              "properties": {
+                "kod":{
+                  "type":"string"
+                },
+                "term": {
+                  "type":"string"
+                },
+                "typ":{
+                  "type":"string"
+                }
+              }
+            }
+          }
+        }
+      }
+  }
+}
