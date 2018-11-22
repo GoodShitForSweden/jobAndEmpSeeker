@@ -356,8 +356,8 @@
       "coordinates":{
         "type": "object",
         "properties": {
-            "x":{"type":"string"},
-            "y":{"type":"string"}
+            "lng":{"type":"string"},
+            "lat":{"type":"string"}
         }
       },
       "AnnonsSource": {
