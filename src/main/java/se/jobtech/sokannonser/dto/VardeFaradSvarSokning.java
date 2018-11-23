@@ -1,4 +1,4 @@
-package se.jobtech.sokannonser.dtos;
+package se.jobtech.sokannonser.dto;
 
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -9,32 +9,32 @@ import javax.validation.Valid;
 import javax.validation.constraints.*;
 
 /**
- * AnnonsTitle
+ * VardeFaradSvarSokning
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-11-20T13:59:16.352+01:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-11-23T08:34:35.808+01:00")
 
-public class AnnonsTitle   {
-  @JsonProperty("freetext")
-  private String freetext = null;
+public class VardeFaradSvarSokning   {
+  @JsonProperty("filter")
+  private String filter = null;
 
-  public AnnonsTitle freetext(String freetext) {
-    this.freetext = freetext;
+  public VardeFaradSvarSokning filter(String filter) {
+    this.filter = filter;
     return this;
   }
 
    /**
-   * Get freetext
-   * @return freetext
+   * Get filter
+   * @return filter
   **/
   @ApiModelProperty(value = "")
 
 
-  public String getFreetext() {
-    return freetext;
+  public String getFilter() {
+    return filter;
   }
 
-  public void setFreetext(String freetext) {
-    this.freetext = freetext;
+  public void setFilter(String filter) {
+    this.filter = filter;
   }
 
 
@@ -46,21 +46,21 @@ public class AnnonsTitle   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    AnnonsTitle annonsTitle = (AnnonsTitle) o;
-    return Objects.equals(this.freetext, annonsTitle.freetext);
+    VardeFaradSvarSokning vardeFaradSvarSokning = (VardeFaradSvarSokning) o;
+    return Objects.equals(this.filter, vardeFaradSvarSokning.filter);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(freetext);
+    return Objects.hash(filter);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class AnnonsTitle {\n");
+    sb.append("class VardeFaradSvarSokning {\n");
     
-    sb.append("    freetext: ").append(toIndentedString(freetext)).append("\n");
+    sb.append("    filter: ").append(toIndentedString(filter)).append("\n");
     sb.append("}");
     return sb.toString();
   }

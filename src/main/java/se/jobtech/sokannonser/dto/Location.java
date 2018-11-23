@@ -1,20 +1,20 @@
-package se.jobtech.sokannonser.dtos;
+package se.jobtech.sokannonser.dto;
 
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import se.jobtech.sokannonser.dtos.Coordinates;
-import se.jobtech.sokannonser.dtos.LocationGoogleMaps;
-import se.jobtech.sokannonser.dtos.LocationTranslations;
+import se.jobtech.sokannonser.dto.Coordinates;
+import se.jobtech.sokannonser.dto.LocationGoogleMaps;
+import se.jobtech.sokannonser.dto.LocationTranslations;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
 
 /**
  * Location
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-11-20T13:59:16.352+01:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-11-23T08:34:35.808+01:00")
 
 public class Location   {
   @JsonProperty("googleMaps")

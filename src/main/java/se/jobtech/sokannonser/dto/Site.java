@@ -1,4 +1,4 @@
-package se.jobtech.sokannonser.dtos;
+package se.jobtech.sokannonser.dto;
 
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -9,55 +9,55 @@ import javax.validation.Valid;
 import javax.validation.constraints.*;
 
 /**
- * Coordinates
+ * Site
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-11-20T13:59:16.352+01:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-11-23T08:34:35.808+01:00")
 
-public class Coordinates   {
-  @JsonProperty("x")
-  private String x = null;
+public class Site   {
+  @JsonProperty("url")
+  private String url = null;
 
-  @JsonProperty("y")
-  private String y = null;
+  @JsonProperty("name")
+  private String name = null;
 
-  public Coordinates x(String x) {
-    this.x = x;
+  public Site url(String url) {
+    this.url = url;
     return this;
   }
 
    /**
-   * Get x
-   * @return x
+   * Get url
+   * @return url
   **/
   @ApiModelProperty(value = "")
 
 
-  public String getX() {
-    return x;
+  public String getUrl() {
+    return url;
   }
 
-  public void setX(String x) {
-    this.x = x;
+  public void setUrl(String url) {
+    this.url = url;
   }
 
-  public Coordinates y(String y) {
-    this.y = y;
+  public Site name(String name) {
+    this.name = name;
     return this;
   }
 
    /**
-   * Get y
-   * @return y
+   * Get name
+   * @return name
   **/
   @ApiModelProperty(value = "")
 
 
-  public String getY() {
-    return y;
+  public String getName() {
+    return name;
   }
 
-  public void setY(String y) {
-    this.y = y;
+  public void setName(String name) {
+    this.name = name;
   }
 
 
@@ -69,23 +69,23 @@ public class Coordinates   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Coordinates coordinates = (Coordinates) o;
-    return Objects.equals(this.x, coordinates.x) &&
-        Objects.equals(this.y, coordinates.y);
+    Site site = (Site) o;
+    return Objects.equals(this.url, site.url) &&
+        Objects.equals(this.name, site.name);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(x, y);
+    return Objects.hash(url, name);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class Coordinates {\n");
+    sb.append("class Site {\n");
     
-    sb.append("    x: ").append(toIndentedString(x)).append("\n");
-    sb.append("    y: ").append(toIndentedString(y)).append("\n");
+    sb.append("    url: ").append(toIndentedString(url)).append("\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("}");
     return sb.toString();
   }

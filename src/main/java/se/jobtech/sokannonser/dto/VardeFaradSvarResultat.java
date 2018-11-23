@@ -1,4 +1,4 @@
-package se.jobtech.sokannonser.dtos;
+package se.jobtech.sokannonser.dto;
 
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -11,7 +11,7 @@ import javax.validation.constraints.*;
 /**
  * VardeFaradSvarResultat
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-11-20T13:59:16.352+01:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-11-23T08:34:35.808+01:00")
 
 public class VardeFaradSvarResultat   {
   @JsonProperty("kod")

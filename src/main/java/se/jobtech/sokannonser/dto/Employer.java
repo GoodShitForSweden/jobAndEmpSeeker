@@ -1,4 +1,4 @@
-package se.jobtech.sokannonser.dtos;
+package se.jobtech.sokannonser.dto;
 
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -9,38 +9,18 @@ import javax.validation.Valid;
 import javax.validation.constraints.*;
 
 /**
- * Site
+ * Employer
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-11-20T13:59:16.352+01:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-11-23T08:34:35.808+01:00")
 
-public class Site   {
-  @JsonProperty("url")
-  private String url = null;
-
+public class Employer   {
   @JsonProperty("name")
   private String name = null;
 
-  public Site url(String url) {
-    this.url = url;
-    return this;
-  }
+  @JsonProperty("logoUrl")
+  private String logoUrl = null;
 
-   /**
-   * Get url
-   * @return url
-  **/
-  @ApiModelProperty(value = "")
-
-
-  public String getUrl() {
-    return url;
-  }
-
-  public void setUrl(String url) {
-    this.url = url;
-  }
-
-  public Site name(String name) {
+  public Employer name(String name) {
     this.name = name;
     return this;
   }
@@ -60,6 +40,26 @@ public class Site   {
     this.name = name;
   }
 
+  public Employer logoUrl(String logoUrl) {
+    this.logoUrl = logoUrl;
+    return this;
+  }
+
+   /**
+   * Get logoUrl
+   * @return logoUrl
+  **/
+  @ApiModelProperty(value = "")
+
+
+  public String getLogoUrl() {
+    return logoUrl;
+  }
+
+  public void setLogoUrl(String logoUrl) {
+    this.logoUrl = logoUrl;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -69,23 +69,23 @@ public class Site   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Site site = (Site) o;
-    return Objects.equals(this.url, site.url) &&
-        Objects.equals(this.name, site.name);
+    Employer employer = (Employer) o;
+    return Objects.equals(this.name, employer.name) &&
+        Objects.equals(this.logoUrl, employer.logoUrl);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(url, name);
+    return Objects.hash(name, logoUrl);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class Site {\n");
+    sb.append("class Employer {\n");
     
-    sb.append("    url: ").append(toIndentedString(url)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    logoUrl: ").append(toIndentedString(logoUrl)).append("\n");
     sb.append("}");
     return sb.toString();
   }

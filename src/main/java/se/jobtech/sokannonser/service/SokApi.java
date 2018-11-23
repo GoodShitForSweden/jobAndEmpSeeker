@@ -6,7 +6,7 @@
 package se.jobtech.sokannonser.service;
 
 import org.springframework.web.bind.annotation.*;
-import se.jobtech.sokannonser.dtos.Annonssvar;
+import se.jobtech.sokannonser.dto.Annonssvar;
 
 import io.swagger.annotations.*;
 import org.springframework.http.ResponseEntity;

@@ -1,4 +1,4 @@
-package se.jobtech.sokannonser.dtos;
+package se.jobtech.sokannonser.dto;
 
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -7,14 +7,14 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.List;
-import se.jobtech.sokannonser.dtos.Annons;
+import se.jobtech.sokannonser.dto.Annons;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
 
 /**
  * Annonssvar
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-11-20T13:59:16.352+01:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-11-23T08:34:35.808+01:00")
 
 public class Annonssvar   {
   @JsonProperty("total")

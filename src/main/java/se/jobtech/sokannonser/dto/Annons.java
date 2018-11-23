@@ -1,4 +1,4 @@
-package se.jobtech.sokannonser.dtos;
+package se.jobtech.sokannonser.dto;
 
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -8,19 +8,19 @@ import io.swagger.annotations.ApiModelProperty;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
-import se.jobtech.sokannonser.dtos.AnnonsApplication;
-import se.jobtech.sokannonser.dtos.AnnonsContent;
-import se.jobtech.sokannonser.dtos.AnnonsSource;
-import se.jobtech.sokannonser.dtos.AnnonsTitle;
-import se.jobtech.sokannonser.dtos.Employer;
-import se.jobtech.sokannonser.dtos.Location;
+import se.jobtech.sokannonser.dto.AnnonsApplication;
+import se.jobtech.sokannonser.dto.AnnonsContent;
+import se.jobtech.sokannonser.dto.AnnonsSource;
+import se.jobtech.sokannonser.dto.AnnonsTitle;
+import se.jobtech.sokannonser.dto.Employer;
+import se.jobtech.sokannonser.dto.Location;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
 
 /**
  * Annons
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-11-20T13:59:16.352+01:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-11-23T08:34:35.808+01:00")
 
 public class Annons   {
   @JsonProperty("id")
